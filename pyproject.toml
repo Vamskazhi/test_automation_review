@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "test-automation-review"
+version = "0.1.0"
+description = ""
+authors = ["vamskazi <vamskazi@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+flake8 = "^7.2.0"
+mypy = "^1.15.0"
+pytest = "^8.3.5"
+faker = "^37.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+show-source = true
+
+[tool.mypy]
+ignore_missing_imports = true
+strict = true
+exclude = "(venv|\\.venv|build|dist|tests/helpers)"
+
