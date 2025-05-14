@@ -1,13 +1,16 @@
+# type: ignore
 import pytest
-from python_pytest.tests.data_tests import fake_call, created_dict
-from python_pytest.sort_dict import sorted_dict_by_key, TypeKeysError
+from tests.helpers.data_tests import fake_call, created_dict
+from src.sort_dict import sorted_dict_by_key
+from src.exceptions import TypeKeysError
 
 
 @pytest.mark.parametrize('input_data', [
     {},
     {x*5: x for x in range(10)},
     created_dict('uuid4', 'name', 10),
-    {(101, 1): fake_call('word'), (1, 2): fake_call('word'), (0,): fake_call('word')}
+    {(101, 1): fake_call('word'), (1, 2): fake_call('word'),
+     (0,): fake_call('word')}
 ],
                          ids=[
                              'Empty dictionary',
@@ -23,10 +26,11 @@ def test_sorted_dict_by_key_success(input_data):
 
 @pytest.mark.parametrize('input_data, expected_message', [
     (None, 'Cannot sort by key: type "NoneType" does not contain keys'),
-    ([x for x in range(10)], 'Cannot sort by key: type "list" does not contain keys'),
+    ([x for x in range(10)],
+     'Cannot sort by key: type "list" does not contain keys'),
     (
             {(101, 1): fake_call('word'), fake_call('uuid4'): (0,)},
-            'Cannot sort dictionary: keys are of different types'
+            'Cannot sort dictionary: keys are different types'
     ),
 ],
                          ids=[

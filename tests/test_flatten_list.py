@@ -1,4 +1,6 @@
-from python_pytest.make_list_flatten import make_list_flatten, IsContainerType
+# type: ignore
+from src.make_list_flatten import make_list_flatten
+from src.exceptions import IsContainerType
 import pytest
 
 
@@ -17,14 +19,17 @@ import pytest
 )
 def test_make_list_flatten_success(checked_list):
     for i in make_list_flatten(checked_list):
-        assert type(i) != list, f"#{checked_list} has nested list"
+        assert type(i) is not list, f"#{checked_list} has nested list"
 
 
 @pytest.mark.parametrize('checked_list, expected_message', [
     (None, "Unexpected type: NoneType"),
-    ([(x for x in range(33))], "Unexpected type: generator only lists are supported"),
-    ([('tuple0', ('tuple1',))], "Unexpected type: tuple only lists are supported"),
-    ([{x: x*2 for x in range(10)}], "Unexpected type: dict only lists are supported")
+    ([(x for x in range(33))],
+     "Unexpected type: generator only lists are supported"),
+    ([('tuple0', ('tuple1',))],
+     "Unexpected type: tuple only lists are supported"),
+    ([{x: x*2 for x in range(10)}],
+     "Unexpected type: dict only lists are supported")
 ],
                          ids=[
                              'None input',

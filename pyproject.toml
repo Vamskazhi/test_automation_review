@@ -27,4 +27,3 @@ show-source = true
 ignore_missing_imports = true
 strict = true
 exclude = "(venv|\\.venv|build|dist|tests/helpers)"
-
