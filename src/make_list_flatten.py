@@ -3,12 +3,13 @@
 
 import copy
 from typing import Any, Optional, Union
+
 from src.exceptions import IsContainerType
 from src.utils import is_сontainer
 
 
 def make_list_flatten(
-        nested_list: list[Any], result: Optional[Any] = None
+    nested_list: list[Any], result: Optional[Any] = None
 ) -> list[Union[int, float, str]]:
     if result is None:
         result = []
