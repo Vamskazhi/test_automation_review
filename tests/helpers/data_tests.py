@@ -1,4 +1,4 @@
-from typing import Any, Generator
+from typing import Any
 
 from faker import Faker
 
@@ -10,7 +10,4 @@ def fake_call(method: str, *args: Any, **kwargs: Any) -> Any:
 
 
 def created_dict(key: str, value: str, count: int = 4) -> dict[Any, Any]:
-    return {
-        fake_call(key): fake_call(value)
-        for _ in range(count)
-    }
+    return {fake_call(key): fake_call(value) for _ in range(count)}
